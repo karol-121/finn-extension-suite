@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Finn.no - address lookup",
+  "version": "1.0",
+  "description": "Allows to roughly see listing address without having to log in.",
+  "icons": {
+    "48": "icons/icon-48.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.finn.no/*"],
+      "js": ["mapViewer.js"]
+    }
+  ]
+}
