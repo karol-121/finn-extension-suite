@@ -17,7 +17,7 @@ const url = "https://www.openstreetmap.org/search?query=";   //URL with serach p
 addressDOMs.push(new AddressDOM("car", document.getElementsByClassName("u-mh16")[1]));
 addressDOMs.push(new AddressDOM("bap", document.getElementsByClassName("u-mb0")[0])); //torget
 addressDOMs.push(new AddressDOM("realestate", document.getElementsByClassName("u-mh16")[1]));
-addressDOMs.push(new AddressDOM("mc"), document.getElementsByClassName('u-t3')[4]);
+addressDOMs.push(new AddressDOM("mc", document.getElementsByClassName('u-t3')[4]));
 
 
 const location = document.location.pathname; //gets pathname of current page
