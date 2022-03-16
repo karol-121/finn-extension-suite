@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Finn.no - address lookup",
-  "version": "2.0",
-  "description": "Allows to roughly see listing address without having to log in.",
+  "name": "Finn.no - external map",
+  "version": "1.0",
+  "description": "Adds link to external map provider on listings",
   "icons": {
     "48": "icons/icon-48.png"
   },
