@@ -1,57 +1,59 @@
 console.log("finn location lookup is loaded!"); //debug string to dobel check if extension is loading
 
-//prototype of object that holds relation between category and reference to DOM
-class AddressObject {
-    constructor(category, path) {
+//assigns array of objects where address may be to subcategory
+class TargetElements {
+    constructor(category, elements) {
         this.category = category;
-        this.path = path;
+        this.elements = elements;
     }
 }
 
-const targets = new Array(); //collection that holds all registered DOMs
+const targets = new Array(); 
 const url = "https://www.openstreetmap.org/search?query=";   //URL with serach parameter, used to show location in this case on openstreetmap.
-// const url = "https://duckduckgo.com/?iaxm=maps&q=";
-const addressRegEx = /.*\d+.*/gm; //matches strings that have numbers in it
+const regex = /(^[\d ]+kr$)|(^[a-zøæåA-ZØÆÅ ]+$)|((reklamasjonsrett.)$)/ //regex that match NOT addresses
 
 
-//registering all possible locations of addres for each category
-targets.push(new AddressObject("car", document.getElementsByClassName("u-mh16")));
-targets.push(new AddressObject("bap", document.getElementsByClassName("u-mb0"))); //torget
-targets.push(new AddressObject("realestate", document.getElementsByClassName("u-mh16")));
-targets.push(new AddressObject("mc", document.getElementsByClassName('u-t3')));
-targets.push(new AddressObject("boat", document.getElementsByClassName('u-t3')));
-targets.push(new AddressObject("job", document.getElementsByClassName('u-t3')));
+//registering all possible locations of address for each category
+targets.push(new TargetElements("car", document.getElementsByClassName("u-mh16")));
+targets.push(new TargetElements("bap", document.getElementsByClassName("u-mb0"))); //torget
+targets.push(new TargetElements("realestate", document.getElementsByClassName("u-mh16")));
+targets.push(new TargetElements("mc", document.getElementsByClassName('u-t3')));
+targets.push(new TargetElements("boat", document.getElementsByClassName('u-t3')));
+targets.push(new TargetElements("job", document.getElementsByClassName('u-t3')));
 
 
 const location = document.location.pathname; //gets pathname of current page
 const subcategory = location.split('/')[1]; //extract category from pathname (url)
 
-//find desired object/objects to modify
-for (const DOM of targets) {
-    if (DOM.category === subcategory) {
+//find targets from array for current category
+const target = targets.find((element) => element.category === subcategory);
 
-        //iterate subset of objects assigned to current category
-        for (const a of DOM.path) {
+//iterate through all elements where addres may be for given subcategory
+for (const element of target.elements) {
 
-            //only modify those with mathing text 
-            if (a.innerText.match(addressRegEx)) {
+    if (!element.innerText.match(regex)) {
 
-                changeAddress(a);
-
-            }
-        }
+        changeAddress(element);
 
     }
+
 }
 
 
-//function that adds link to target object
+//function that adds address link to external map
 function changeAddress(Object) {
 
     const address_string = Object.innerText; //getting addres string from HTML object
     const final_url = url + address_string; //modifing url by adding address string to it.
 
-    Object.innerHTML = "<a href='"+final_url+"' target='_blank'>"+address_string+" ↗</a>"; //replace location text with link to map
+    //create link object
+    const link = document.createElement("a");
+        link.setAttribute("href", final_url);
+        link.setAttribute("target", "_blank");
+        link.append(address_string);
+    
+    Object.replaceChild(link, Object.childNodes[0]); //replace text with link
+
 }
 
 
