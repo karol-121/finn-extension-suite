@@ -12,5 +12,12 @@
       "matches": ["*://*.finn.no/*?finnkode=*"],
       "js": ["mapViewer.js"]
     }
-  ]
+  ],
+
+  "options_ui": {
+    "page": "ui/options.html",
+    "browser_style": true
+  },
+
+  "permissions": ["storage"]
 }

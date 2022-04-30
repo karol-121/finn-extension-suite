@@ -9,9 +9,24 @@ class TargetElements {
 }
 
 const targets = new Array(); 
-const url = "https://www.openstreetmap.org/search?query=";   //URL with serach parameter, used to show location in this case on openstreetmap.
+const storageItem = browser.storage.local.get('prefered_url');
 const regex = /(^[\d ]+kr$)|(^[a-zøæåA-ZØÆÅ ]+$)|((reklamasjonsrett.)$)/ //regex that match NOT addresses
 
+//function that asynchronusly gets items from extension local storage
+function getPreferedUrl() {
+  return storageItem.then(sucess, failure);
+}
+
+//get user preferenced url in case of sucessfull async call
+function sucess(item) {
+  return item.prefered_url
+}
+
+//use default url in case of falied async call
+function failure(item) {
+  console.error(item);
+  return "https://www.openstreetmap.org/search?query=";
+}
 
 //registering all possible locations of address for each category
 targets.push(new TargetElements("car", document.getElementsByClassName("u-mh16")));
@@ -39,9 +54,13 @@ for (const element of target.elements) {
 
 }
 
-
 //function that adds address link to external map
-function changeAddress(Object) {
+async function changeAddress(Object) {
+
+    //waits for the asynchronus call that returns elements from local extension storage, 
+    //this is where user preferences are saved
+    //if it fails, default url will be used
+    const url = await getPreferedUrl();
 
     const address_string = Object.innerText; //getting addres string from HTML object
     const final_url = url + address_string; //modifing url by adding address string to it.
