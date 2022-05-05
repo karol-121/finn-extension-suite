@@ -19,7 +19,7 @@ function getPreferedUrl() {
 
 //get user preferenced url in case of sucessfull async call
 function sucess(item) {
-  return item.prefered_url
+  return item.prefered_url.active
 }
 
 //use default url in case of falied async call
