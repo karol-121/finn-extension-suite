@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "Finn.no - to top button",
+  "version": "1.0",
+  "description": "Adds scroll to top button to the page",
+  "icons": {
+    "48": "icons/icon-48.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.finn.no/*"],
+      "css": ["scrollToTop.css"],
+      "js": ["scrollToTop.js"]
+    }
+  ]
+}

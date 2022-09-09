@@ -1,0 +1,8 @@
+/*extra css rules that are lacking*/
+.position-fixed {
+	position: fixed;
+}
+
+.zindex-999 {
+	z-index: 999;
+} 

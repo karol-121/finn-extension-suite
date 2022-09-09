@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Finn.no - square meters",
+  "version": "1.0",
+  "description": "Calculates and shows price per square meter for home rent listings",
+  "icons": {
+    "48": "icons/icon-48.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.finn.no/realestate/lettings/search.html*"],
+      "js": ["squareMeters.js"]
+    }
+  ]
+}
