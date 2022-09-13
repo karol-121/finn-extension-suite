@@ -39,6 +39,10 @@ Extension that adds "to the top" button across whole webpage. This button allow 
 ### How it works?
 Simply a button in the right bottom corner is added. When it is pressed, the page automatically scrolls to the top.
 
+!["to the top" button](/assets/img01-toTheTop.png)
+
+*"to the top" button that is displayed in right bottom corner*
+
 ### Installation
 Currently this extension is not signed which means you can not install it the ordinary way. This however may change soon.
 In mean time you can still use or try it by installing it as local debug install. **Note that you will have to install it every time you open browser**
@@ -57,6 +61,14 @@ Extension that add price per square meter to house rent listings. In addition li
 ### How it works?
 Extension adds price per square meter value next to price and amount of square meters on house rent listings. Value is calculated from given price and square meters count. The calculated value is approximate. In addition listings where price per square meter is below predetermined value are marked. This is so one can spot a "good deal" easier.
 
+![price per square meter value displayed in listing tile](/assets/img01-squareMeters.png)
+
+*Price per square meter value displayed in listing tile*
+
+![listing marked as "good deal" by coloring values](/assets/img02-squareMeters.png)
+
+*listing marked as "good deal" by coloring values to gold*
+
 ### Installation
 Currently this extension is not signed which means you can not install it the ordinary way. This however may change soon.
 In mean time you can still use or try it by installing it as local debug install. **Note that you will have to install it every time you open browser**
@@ -73,6 +85,10 @@ Extension that implements image slideshow on listing's thumbnail. This make it p
 
 ### How it works?
 After hovering on given listing for x time, the thumbnail changes periodically showing all listings images in a loop. 
+
+![listing images are shown as slideshow upon mouse hover](/assets/img01-thumbnailSlideshow.gif)
+
+*listing images are shown as slideshow upon mouse hover*
 
 ### Installation
 *Note that this extension mostly does not work right*
