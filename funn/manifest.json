@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Funn",
+  "version": "1.0",
+  "description": "Extension for Finn.no",
+  "icons": {
+    "48": "icons/icon-48.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.finn.no/*"],
+      "js": ["base/extension-link.js","base/extension-config.js"]
+    }
+  ]
+}
