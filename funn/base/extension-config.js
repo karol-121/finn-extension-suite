@@ -64,16 +64,15 @@ function showExtensionSettings() {
 		setting_group.className = "group block relative break-words last-child:mb-0 p-16 rounded-8 -mx-16 sm:mx-0 rounded-l-0 rounded-r-0 sm:rounded-8 mt-16 mb-16";
 		setting_group.setAttribute("style", "background-color: white;");
 		setting_group.append(setting_group_title);
+		
 		//this content here should be looped for each module that is registered
-		//TODO: the group separator does not work well here
-
-		setting_group.append(createSettingGroupItem("Kart utvidelse","Annonse lokasjon er mulig å se på kart.finn.no"));
+		setting_group.append(createSettingGroupItem("Kart utvidelse","Annonse lokasjon er mulig å se på kart.finn.no", true));
 		setting_group.append(createSettingGroupSeparator());
-		setting_group.append(createSettingGroupItem("Galleri slideshow","viser frem annonse galleri ved mouse over"));
+		setting_group.append(createSettingGroupItem("Galleri slideshow","viser frem annonse galleri ved mouse over", true));
 		setting_group.append(createSettingGroupSeparator());
-		setting_group.append(createSettingGroupItem("Til toppen","Legges til til toppen knapp"));
+		setting_group.append(createSettingGroupItem("Til toppen","Legges til til toppen knapp", false));
 		setting_group.append(createSettingGroupSeparator());
-		setting_group.append(createSettingGroupItem("Kvadrat meter","Beregner og viser pris per kvadrat meter til annonser"));
+		setting_group.append(createSettingGroupItem("Kvadrat meter","Beregner og viser pris per kvadrat meter til annonser", true));
 
 	//wrapper for setting group
 	const main_section_shrinker = document.createElement("div");
@@ -115,7 +114,7 @@ function createSettingGroupSeparator() {
 }
 
 //function that creates setting group item
-function createSettingGroupItem(setting_title, setting_desc) {
+function createSettingGroupItem(setting_title, setting_desc, setting_value) {
 
 	//title for setting item
 	const title = document.createElement("h4");
@@ -131,21 +130,54 @@ function createSettingGroupItem(setting_title, setting_desc) {
 		description_wrapper.setAttribute("style", "flex-grow: 1;");
 		description_wrapper.append(description);
 
+	//selected and unselected class for toggle background
+	const toggle_background_selected = "absolute h-full w-full rounded-full transition-colors top-0 left-0 bg-blue-600 f-track-selected";
+	const toggle_background_unselected = "absolute h-full w-full rounded-full transition-colors top-0 left-0  bg-gray-300 f-track-unselected";
+
+	//selected and unselected class for toggle toggler
+	const toggle_toggler_selected = "absolute transition-gpu h-16 w-16 top-4 left-4 rounded-full transition-transform bg-white shadow f-switch-selected";
+	const toggle_toggler_unselected = "absolute transition-gpu h-16 w-16 top-4 left-4 rounded-full transition-transform bg-white shadow";
+
 	//background inside toggle
 	const toggle_background = document.createElement("span");
-		toggle_background.className = "absolute h-full w-full rounded-full transition-colors top-0 left-0 bg-blue-600 f-track-selected";
 
 	//moving part of the toggle
 	const toggle_toggler = document.createElement("span");
-		toggle_toggler.className = "absolute transition-gpu h-16 w-16 top-4 left-4 rounded-full transition-transform bg-white shadow f-switch-selected";
+
+	//start with selected or unselected toggle based on passed value
+	if (setting_value) {
+		toggle_toggler.className = toggle_toggler_selected;
+		toggle_background.className = toggle_background_selected; 
+	} else {
+		toggle_toggler.className = toggle_toggler_unselected;
+		toggle_background.className = toggle_background_unselected;
+	}
+	
 
 	//toggle, on off button
 	const toggle = document.createElement("button");
 		toggle.className = "block relative h-24 w-44 cursor-pointer f-switch focus:outline-none focus:ring ring-offset-1 ring-blue-200 rounded-full";
 		toggle.append(toggle_background);
 		toggle.append(toggle_toggler);
-		//add aria label etc.
-		//TODO add event listener for toggles, the toggle has to change also
+
+		//attach click listener to button so its setting_value gets updated
+		toggle.addEventListener("click", function () { item_toggled(toggle);});
+
+		//function that updates the value of the toggle
+		function item_toggled(toggle) {
+
+			setting_value = !setting_value;
+			
+			if (setting_value) {
+				toggle.children[0].className = toggle_background_selected;
+				toggle.children[1].className = toggle_toggler_selected;
+				//callback true to wherever the setting value should be updated
+			} else {
+				toggle.children[0].className = toggle_background_unselected;
+				toggle.children[1].className = toggle_toggler_unselected;
+				//callback false to wherever the setting value should be updated
+			}
+		}
 		
 	//wrapper for toggle
 	const toggle_wrapper = document.createElement("div");
