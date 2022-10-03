@@ -14,10 +14,11 @@
         "base/component-dispatcher.js",
         "base/extension-link.js",
         "base/extension-config.js",
-        "components/toTopButton/scrollToTop.js",
-        "components/mapViewer/mapViewer.js",
+        "components/scrollToTop.js",
+        "components/mapViewer.js",
+        "components/squareMeters.js",
         "main.js"],
-      "css": ["components/toTopButton/scrollToTop.css"]
+      "css": ["components/css/scrollToTop.css"]
     }
   ]
 }

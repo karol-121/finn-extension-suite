@@ -2,8 +2,8 @@
 const toTopComponent = {
 
   //component metadata
-  name: "to top",
-  desc: "extension that adds to top button",
+  name: "Til toppen",
+  desc: "Legger til en knapp som blar til toppen",
   matches: /\/.*/gm, //defines on which url this component should be active on
   enabled: true, //defines if extension is active, component activity is defined by the end user
   
@@ -11,7 +11,7 @@ const toTopComponent = {
   //needs: components
 
   //component entry point
-  run: function () {
+  run() {
     //debug string to dobel check if extension is loading
     console.log("scroll to top extension loaded!"); 
 
