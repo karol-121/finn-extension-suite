@@ -11,14 +11,15 @@
     {
       "matches": ["*://*.finn.no/*"],
       "js": [
+        "prototypes/components.js",
         "base/component-dispatcher.js",
-        "base/extension-link.js",
-        "base/extension-config.js",
-        "components/scrollToTop.js",
-        "components/mapViewer.js",
-        "components/squareMeters.js",
+        "base/settings-button.js",
+        "base/settings-page.js",
+        "modules/scroll-top.js",
+        "modules/map-viewer.js",
+        "modules/square-meters.js",
         "main.js"],
-      "css": ["components/css/scrollToTop.css"]
+      "css": ["modules/css/scroll-top.css"]
     }
   ]
 }

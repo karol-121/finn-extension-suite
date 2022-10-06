@@ -19,30 +19,28 @@ const changeHandler = () => {
   if (url !== lastUrl) {
   	//execute only when there is change in url
     lastUrl = url;
-    componentDispatcher.dispatch(currentPage);
+    componentDispatcher.dispatchGreedy(currentPage); 
+    //some components needs to be refreshed upon dynamic content change (change page content without page reloading which finn is using)
   }
 }
 
-//TODO: here handle loading and saving user settings
 
 //register base components
-componentDispatcher.registerBase(baseExtensionButton);
-componentDispatcher.registerBase(baseExtensionSettings);
+componentDispatcher.registerBaseComponent(settingsButtonBase);
+componentDispatcher.registerBaseComponent(settingsPageBase);
 
-//register components (extensions)
-componentDispatcher.registerComponent(toTopComponent);
-componentDispatcher.registerComponent(mapComponent);
-componentDispatcher.registerComponent(squareMeterComponent);
+//register module components (extensions)
+componentDispatcher.registerModuleComponent(mapModule);
+componentDispatcher.registerModuleComponent(toTopModule);
+componentDispatcher.registerModuleComponent(squareMetersModule);
 
 //dispatch components for the first time the page is loaded
 componentDispatcher.dispatch(currentPage);
 
 //create and activate mutation observer, allows for dispatch to be dispatched when page content has been changed but not reloaded
+//this does also bring bug where not overwritten elements will append continuously every time page is not reloaded fully
 const observer = new MutationObserver(changeHandler);
 observer.observe(pageContent, config);
-
-
-
 
 
 

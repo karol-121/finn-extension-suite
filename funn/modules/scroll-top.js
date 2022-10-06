@@ -1,17 +1,14 @@
 //object for "to the top button" extension component
-const toTopComponent = {
-
-  //component metadata
+const toTopModuleHead = {
+  matches: /\/.*/gm,
+  greedy: false,
   name: "Til toppen",
-  desc: "Legger til en knapp som blar til toppen",
-  matches: /\/.*/gm, //defines on which url this component should be active on
-  enabled: true, //defines if extension is active, component activity is defined by the end user
-  
-  //kinda could be cool to manifest the needs of component here , ie. access to all components
-  //needs: components
+  desc: "Legger til en knapp som blar til toppen"
+}
 
-  //component entry point
-  run() {
+
+const toTopModuleBody = {
+  main() {
     //debug string to dobel check if extension is loading
     console.log("scroll to top extension loaded!"); 
 
@@ -28,9 +25,9 @@ const toTopComponent = {
 
     //adding button to the page
     body.append(button);
+
   }
 }
 
 
-
-
+const toTopModule = new ModuleComponent(toTopModuleHead, toTopModuleBody);

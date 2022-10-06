@@ -1,15 +1,14 @@
 //object for "square meter" extension component
-
-const squareMeterComponent = {
-
-  //component metadata
+const squareMetersModuleHead = {
+  matches: /\/realestate\/lettings\/search\.html.*/gm,
+  greedy: true,
   name: "Kvadrat meter",
-  desc: "Beregner pris per kvadrat meter for alle til leie anonneser. Gode pris er også markert",
-  matches: /\/realestate\/lettings\/search\.html.*/gm, //defines on which url this component should be active on
-  enabled: true, //defines if extension is active, component activity is defined by the end user
+  desc: "Beregner pris per kvadrat meter for alle til leie anonneser. Gode tilbud (verdi under 250kr/m²) er markert med gul skrift."
+}
 
-  //component entry point
-  run() {
+
+const squareMetersModuleBody = {
+  main() {
     console.log("meter ratio extension loaded!");
     
     //collection of listings
@@ -70,3 +69,5 @@ const squareMeterComponent = {
     return Math.floor(kr/m2);
   }
 }
+
+const squareMetersModule = new ModuleComponent(squareMetersModuleHead, squareMetersModuleBody);

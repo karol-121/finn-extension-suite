@@ -3,11 +3,12 @@
 //this modue replaces content on 404 page with extensions settings
 console.log("base extension-config.js is loaded");
 
-const baseExtensionSettings = {
-	//component metadata
-  matches: /\/funn/gm, //defines on which url this component should be active on
+const settingsPageBaseHead = {
+	matches: /\/funn/gm
+}
 
-  run(components) {
+const settingsPageBaseBody = {
+  main(components) {
   	//locales
 		const page_title = "Innstillinger for Funn utvidelse";
 		const page_desc = "Her kan du tilpasse Funn utvidelse til dine preferanser. Du kan blant annet slå på eller av ulike moduler";
@@ -62,7 +63,7 @@ const baseExtensionSettings = {
 			setting_group.append(setting_group_title);
 
 			for (component of components) {
-				setting_group.append(this.createSettingGroupItem(component, component.name, component.desc, component.enabled));
+				setting_group.append(this.createSettingGroupItem(component));
 				setting_group.append(this.createSettingGroupSeparator());
 			}
 			
@@ -107,15 +108,15 @@ const baseExtensionSettings = {
 
 
 	//function that creates setting group item
-	createSettingGroupItem(a, setting_title, setting_desc, setting_value) {
+	createSettingGroupItem(item) {
 
 		//title for setting item
 		const title = document.createElement("h4");
-			title.append(setting_title);
+			title.append(item.getName());
 
 		//description for setting item
 		const description = document.createElement("p");
-			description.append(setting_desc);
+			description.append(item.getDesc());
 
 		//description wrapper
 		const description_wrapper = document.createElement("div");
@@ -137,8 +138,10 @@ const baseExtensionSettings = {
 		//moving part of the toggle
 		const toggle_toggler = document.createElement("span");
 
+		let isActive_Local = item.isActive(); //load status from module
+
 		//start with selected or unselected toggle based on passed value
-		if (setting_value) {
+		if (isActive_Local) {
 			toggle_toggler.className = toggle_toggler_selected;
 			toggle_background.className = toggle_background_selected; 
 		} else {
@@ -159,18 +162,21 @@ const baseExtensionSettings = {
 			//function that updates the value of the toggle
 			function item_toggled(toggle) {
 
-				setting_value = !setting_value;
+				isActive_Local = !isActive_Local;
 				
-				if (setting_value) {
+				if (isActive_Local) {
+					//change apperance of the toggle
 					toggle.children[0].className = toggle_background_selected;
 					toggle.children[1].className = toggle_toggler_selected;
-					//callback true to wherever the setting value should be updated
-					a.enabled = true; //should refer to some kind of object that deals with saving etc.
+					//callback to item's function that updates it status
+					item.enabled();
+
 				} else {
+					//change appearnce of the toggle
 					toggle.children[0].className = toggle_background_unselected;
 					toggle.children[1].className = toggle_toggler_unselected;
-					//callback false to wherever the setting value should be updated
-					a.enabled = false; //should refer to some kind of object that deals with saving etc.
+					//callback to item's function that updates it status
+					item.disabled();
 				}
 
 			}
@@ -196,8 +202,7 @@ const baseExtensionSettings = {
 	}
 }
 
-
-
+const settingsPageBase = new BaseComponent(settingsPageBaseHead, settingsPageBaseBody);
 
 
 

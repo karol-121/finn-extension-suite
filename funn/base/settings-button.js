@@ -2,12 +2,12 @@
 //the endpoint where config page exisit is defined here (atleast for now)
 //however the content of the extension config page is defined in another file
 
-const baseExtensionButton = {
-	//component metadata
-  matches: /\/.*/gm, //defines on which url this component should be active on
-  
-  //component entry point
-  run(components) {
+const settingsButtonBaseHead = {
+	matches: /\/.*/gm
+}
+
+const settingsButtonBaseBody = {
+  main(components) {
   	console.log("base extension_link.js is loaded");
   	//endpoint in where the link will lead to, this does define where extension config page will be
 		const endpoint = "/funn";
@@ -56,5 +56,4 @@ const baseExtensionButton = {
   }
 }
 
-
-
+const settingsButtonBase = new BaseComponent(settingsButtonBaseHead, settingsButtonBaseBody);

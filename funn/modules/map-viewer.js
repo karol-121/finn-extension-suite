@@ -1,14 +1,13 @@
 //object for "external map" extension component
-const mapComponent = {
-
-  //component metadata
+const mapModuleHead = {
+  matches: /\/.*\/ad\.html.*/gm,
+  greedy: false,
   name: "Kart Utvidelse",
-  desc: "Gjør det mulig å se adressen på kart.finn.no",
-  matches: /\/.*\/ad\.html.*/gm, //defines on which url this component should be active on
-  enabled: true, //defines if extension is active, component activity is defined by the end user
+  desc: "Gjør det mulig å se adressen på kart.finn.no"
+}
 
-  //component entry point
-  run() {
+const mapModuleBody = {
+  main() {
     console.log("finn location lookup is loaded!"); //debug string to dobel check if extension is loading
 
     //array of all images on page, it should contain map tile
@@ -53,5 +52,7 @@ const mapComponent = {
     }
   }
 }
+
+const mapModule = new ModuleComponent(mapModuleHead, mapModuleBody);
 
 
