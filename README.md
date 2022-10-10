@@ -1,9 +1,21 @@
 # Funn - browser extension for finn.no
-Funn is a browser extension that provides extra features for finn.no website. The purpose of this extension is to make Finn.no experience better. This extension can be seen as an master extension that inclueds smaller extensions (called modules) which are described in detail below. Each module can be turn on/off in the master extension meaning that everone can choose which one to run.
-
+Funn is a browser extension that provides extra features for finn.no website. The purpose of this extension is to make Finn.no experience better. This extension can be seen as an master extension that includes smaller extensions (called modules) which are described in detail in [module section](#modules). Each module can be turned on and off independently meaning that the user can customize its finn.no experience.
+ 
 This extension is currently under development which means that it may not work as intended. List of features is also subject of change at this moment.
 
 Currently only for Firefox, support for other browsers may or may not come.
+
+## Installation
+The extension is currently below version 1.0 which means it will not be published yet. It does lack basic functionality and I don't feel like it is ready for publishing. This means that the extension is not signed and therefore unavailable to install in the ordinary way.
+In mean time you can still use it or try it by installing it as local debug install. **Note that you will have to install it every time you open the browser**
+- [Installing extension locally](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#installing)
+
+**Note also** that you can either install the master extension (Funn) which includes all of the modules (except [thumbnail slideshow](#4-finnno---thumbnail-slideshow-proof-of-concept) or each module individually. Manifest file (used for local install) for Funn extension is located in the `/funn/` directory. Manifest file for individual modules are located under `/standalone/{module-name}/` directory. 
+
+I plan only on publishing and developing the master extension (Funn) which means that the standalone modules will probably not be accessible outside of local installation.
+
+## Usage
+After installing extension, a "Funn" button will appear on top bar across all finn.no websites. Clicking on this button will lead to a settings page where user can activate and deactivate chosen modules. On default all modules are active. The [module section](#modules) describes in detail each module that are included with the extension.
 
 ## Modules
 ### 1. Finn.no - external map
@@ -24,7 +36,7 @@ The map opens in new tab showing results for that particular location.
 
 
 ### 2. Finn.no - to the top
-Extension that adds "to the top" button across whole webpage. This button allow to quickly scroll to the top of the page.
+Extension that adds "to the top" button across whole webpage. This button allows to quickly scroll to the top of the page.
 
 Simply a button in the right bottom corner is added. When it is pressed, the page automatically scrolls to the top.
 
@@ -33,9 +45,9 @@ Simply a button in the right bottom corner is added. When it is pressed, the pag
 *"to the top" button that is displayed in right bottom corner*
 
 ### 3. Finn.no - square meters
-Extension that add price per square meter to house rent listings. In addition listings that have price per square meter below given threshold, will be marked. This way one can quickly spot a "good deal".
+Extension that add price per square meter to home rent listings. In addition listings that have price per square meter below given threshold, will be marked. Currently the threshold is set to 250kr/m² which may not be applicable for everyone, however I plan to make it a user preference.
 
-Extension adds price per square meter value next to price and amount of square meters on house rent listings. Value is calculated from given price and square meters count. The calculated value is approximate. In addition listings where price per square meter is below predetermined value are marked. This is so one can spot a "good deal" easier.
+Extension adds price per square meter value next to price and amount of square meters on house rent listings. Value is calculated from given price and square meters count. The calculated value is approximate. In addition listings where price per square meter is below predetermined value are marked.
 
 ![price per square meter value displayed in listing tile](/assets/img01-squareMeters.png)
 
@@ -48,23 +60,18 @@ Extension adds price per square meter value next to price and amount of square m
 ### 4. Finn.no - thumbnail slideshow (proof of concept)
 Extension that implements image slideshow on listing's thumbnail. This make it possible to see listing's item from other perspectives (as long the author has provided these) directly from the front page. 
 
-After hovering on given listing for x time, the thumbnail changes periodically showing all listings images in a loop. 
+After hovering on given listing for x time, the thumbnail changes periodically showing all listings images in a loop.
+
+**Note** that this extension does not work properly so use it with caution. I originally developed it as functional prototype and found that this function is not so great afterwards. Therefore for now it is abandoned by me.
 
 ![listing images are shown as slideshow upon mouse hover](/assets/img01-thumbnailSlideshow.gif)
 
 *listing images are shown as slideshow upon mouse hover*
 
-## Installation
-Extension is currently below version 1.0 which means it will not be published yet. For now it does lack basic functionality and I don't feel like it is ready for publishing. This means that this extension is not signed and therefore you can not install it in the ordinary way.
-In mean time you can still use or try it by installing it as local debug install. **Note that you will have to install it every time you open browser**
-- [Installing extension locally](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#installing)
-
-**Note** that you can either install the master extension (funn) which includes all of the modules (except thumbnail slideshow) or each module individually. Manifest file (used for local install) for funn extension is located in the `/funn/` directory. Manifest file for invidual modules are located under `/standalone/{module-name}/` directory. 
-
-In the future I plan only on publishing and developing the master extension (funn) which means that the standalone modules will not be accessible outside of local installation.
-
 ## Development
 Extension source files with `manifest.json` file are located in `/funn/` directory for funn extension and `/standalone/{module-name}` for individual modules. On how to develop extensions refer to this guide: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension
+
+Documentation in form of wiki will come in the future, for now I'm still experimenting with the structure and therefore hasn't wrote it yet. 
 
 ## Known issues
 - See issues on this repo

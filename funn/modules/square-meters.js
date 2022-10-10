@@ -25,7 +25,7 @@ const squareMetersModuleBody = {
     //iterate through all listings and add ratio value for each
     //here the first listing is skipped as it is updated and not replaced, thus modifications are not reset and adds up
     for (listing of listings) {
-      this.modifyListing(listing);
+      this.modifyListing(listing, threshold);
     }
   },
 
