@@ -30,4 +30,4 @@ const toTopModuleBody = {
 }
 
 
-const toTopModule = new ModuleComponent(toTopModuleHead, toTopModuleBody);
+const toTopModule = new ModuleComponent(toTopModuleHead, toTopModuleBody, storageManager);

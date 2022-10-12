@@ -53,6 +53,6 @@ const mapModuleBody = {
   }
 }
 
-const mapModule = new ModuleComponent(mapModuleHead, mapModuleBody);
+const mapModule = new ModuleComponent(mapModuleHead, mapModuleBody, storageManager);
 
 

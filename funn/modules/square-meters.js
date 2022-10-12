@@ -70,4 +70,4 @@ const squareMetersModuleBody = {
   }
 }
 
-const squareMetersModule = new ModuleComponent(squareMetersModuleHead, squareMetersModuleBody);
+const squareMetersModule = new ModuleComponent(squareMetersModuleHead, squareMetersModuleBody, storageManager);

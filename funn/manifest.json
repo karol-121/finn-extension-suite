@@ -7,12 +7,16 @@
     "48": "icons/icon-48.png"
   },
 
+  "permissions": ["storage"],
+
   "content_scripts": [
     {
+
       "matches": ["*://*.finn.no/*"],
       "js": [
         "prototypes/components.js",
-        "base/component-dispatcher.js",
+        "core/storage-manager.js",
+        "core/component-dispatcher.js",
         "base/settings-button.js",
         "base/settings-page.js",
         "modules/scroll-top.js",

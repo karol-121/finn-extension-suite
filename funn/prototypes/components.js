@@ -10,7 +10,6 @@ function Component(head, body) {
 
 Object.assign(Component.prototype, componentPrototype);
 
-
 //base component extends core component
 //(for now it is only wrapper for core component but i want base and module component to be on the same level)
 const baseComponentPrototype = {
@@ -33,10 +32,9 @@ function BaseComponent(head, body) {
 
 Object.assign(BaseComponent.prototype, baseComponentPrototype);
 
-
 //module component extends core component
-const moduleComponentPrototype = {
-	active: true, //set default value true
+const moduleComponentPrototype = {	
+	active: true, //set default value to true, technically the value could be determined from storage manager
 
 	matches() {
 		return this.core.head.matches;
@@ -47,13 +45,18 @@ const moduleComponentPrototype = {
 	},
 
 	loadStatus() {
-		//here: read "active" from local storage
-		console.log("status loaded for: "+ this.core.head.name);
+		//get item from storage manager using key (name of this object)
+
+		console.log("retriving value from the storage");
+		//TODO: here check what is the value of gotten item, if it is undefined, then dont overwrite current value
+		this.active = this.storage.get(this.core.head.name);
 	},
 
 	saveStatus() {
-		//here: save "active" value to local storage
-		console.log("status saved for: " + this.core.head.name);
+		//set item to storage manager using key (name of this object)
+		console.log("sending "+ this.core.head.name + "'s value ("+this.active+") to storage manager");
+		this.storage.set(this.core.head.name, this.active);
+		
 	},
 
 	enabled() {
@@ -67,6 +70,7 @@ const moduleComponentPrototype = {
 	},
 
 	isActive() {
+		//await load status
 		return this.active;
 	},
 
@@ -83,9 +87,10 @@ const moduleComponentPrototype = {
 	}
 }
 
-function ModuleComponent(head, body) {
+function ModuleComponent(head, body, storage) {
 	this.core = new Component(head, body);
-	this.loadStatus(); //resolve status, tries to load
+	this.storage = storage; //define storage manager for this object
+	this.loadStatus(); //
 }
 
 Object.assign(ModuleComponent.prototype, moduleComponentPrototype);
