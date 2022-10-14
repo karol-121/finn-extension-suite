@@ -18,25 +18,19 @@ const componentDispatcher = {
 	},
 
 	//method which iterate registered components and bases and chose which one to run based on their properties
-	dispatch(url) {
+	dispatch() {
 		for (base of this.bases) {
-			if(url.match(base.matches())) {
-				base.run(this.components); //pass component list as paramter as base components may have use of it
-			}
+			base.run(this.components);
 		}
 
 		for (component of this.components) {
-			if (url.match(component.matches()) && component.isActive()) {
-				component.run(); //call run method inside each component which is their start point
-			}
+			component.run(false);
 		}
 	},
 
-	dispatchGreedy(url) { //greedy dispatch, this one looks for greedy attribute, and run only those whose greedy attribute is set to true 
+	dispatchGreedy() { //greedy dispatch, this one looks for greedy attribute, and run only those whose greedy attribute is set to true 
 		for (component of this.components) {
-			if (url.match(component.matches()) && component.isActive() && component.isGreedy()) {
-				component.run(); 
-			}
+			component.run(true);
 		}	
 	}
 

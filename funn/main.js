@@ -1,9 +1,6 @@
 //main logic for funn extension
 console.log("main loaded");
 
-//url used by component dispatcher to decide which extensions to load
-const currentPage = document.location.pathname;
-
 //saves last url used in callback
 let lastUrl = document.location.href;
 
@@ -19,7 +16,7 @@ const changeHandler = () => {
   if (url !== lastUrl) {
   	//execute only when there is change in url
     lastUrl = url;
-    componentDispatcher.dispatchGreedy(currentPage); 
+    componentDispatcher.dispatchGreedy(); 
     //some components needs to be refreshed upon dynamic content change (change page content without page reloading which finn is using)
   }
 }
@@ -35,7 +32,7 @@ componentDispatcher.registerModuleComponent(toTopModule);
 componentDispatcher.registerModuleComponent(squareMetersModule);
 
 //dispatch components for the first time the page is loaded
-componentDispatcher.dispatch(currentPage);
+componentDispatcher.dispatch();
 
 //create and activate mutation observer, allows for dispatch to be dispatched when page content has been changed but not reloaded
 //this does also bring bug where not overwritten elements will append continuously every time page is not reloaded fully
