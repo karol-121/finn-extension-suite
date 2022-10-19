@@ -9,8 +9,6 @@ const squareMetersModuleHead = {
 
 const squareMetersModuleBody = {
   main() {
-    console.log("meter ratio extension loaded!");
-    
     //collection of listings
     let listings;
 
@@ -19,8 +17,6 @@ const squareMetersModuleBody = {
 
     //update listing with current feed
     listings = document.querySelectorAll("article");
-
-    //TODO: remove the first article from listing list as i dont have intention of applying modification to it at this moment
 
     //iterate through all listings and add ratio value for each
     //here the first listing is skipped as it is updated and not replaced, thus modifications are not reset and adds up

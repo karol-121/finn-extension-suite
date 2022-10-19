@@ -8,8 +8,6 @@ const mapModuleHead = {
 
 const mapModuleBody = {
   main() {
-    console.log("finn location lookup is loaded!"); //debug string to dobel check if extension is loading
-
     //array of all images on page, it should contain map tile
     const images = document.querySelectorAll('img');
     let mapTile;

@@ -9,9 +9,6 @@ const toTopModuleHead = {
 
 const toTopModuleBody = {
   main() {
-    //debug string to dobel check if extension is loading
-    console.log("scroll to top extension loaded!"); 
-
     const html = document.querySelector("html");
     const body = document.querySelector("body");
 

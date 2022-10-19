@@ -34,7 +34,6 @@ function Component(head, body) {
 Object.assign(Component.prototype, componentPrototype);
 
 //base component extends core component
-//(for now it is only wrapper for core component but i want base and module component to be on the same level)
 const baseComponentPrototype = {
 
 	run() {
@@ -55,16 +54,14 @@ Object.assign(BaseComponent.prototype, baseComponentPrototype);
 
 //module component extends core component
 const moduleComponentPrototype = {	
-	//TODO: here create head object that holds metadata relevant for module component (name, desc);
-	//TODO: here create object that hold variables that are possibel for user to change, this object will be saved and loaded 
 
+	//value that defines if component is active or not
 	active: true,
 
+	//method that decides if and how component should be executed 
 	async run(greedy) {
 
-		await this.loadStatus(); //wait until "active" value is updated
-		
-		//TODO: currently this method (run) is only method that invokes "loadStatus()" this means the active value is default before this method exectues
+		await this.loadStatus(); //await method that loads "active" value, it ensures that correct value is used below
 
 		if (this.active) {
 			if (greedy) {
@@ -76,29 +73,30 @@ const moduleComponentPrototype = {
 		
 	},
 
-	fetchFromStorage() {
-		return browser.storage.local.get(this.core.head.name).then(
-			function (item) {
-				//success, return gotten items
-				return item;
+	//method that gets "this.active" value from storage area and updates it upon success.
+	async loadStatus() {
+
+		//get values from storage area using key (name of this object)
+		const fromStorage = await browser.storage.local.get(this.core.head.name).then(
+			function (result) {
+				//success, return result
+				return result;
 			},
-			function (){
-				//failure, for now, log to console
-				console.err("failed to load from storage");
+			function (result) {
+				console.err(result);
 			}
 		);
-	},
-
-	async loadStatus() {
-		//get item from storage manager using key (name of this object)
-		const fromStorage = await this.fetchFromStorage();
-
-		//TODO: check what a is, now it is assumed it is correct object from storage
+		
+		//check whether relevant result from storage exist, if not return
+		if (Object.values(fromStorage)[0] === undefined) {
+			return;
+		}
 
 		//update value with value from storage
 		this.active = Object.values(fromStorage)[0];
 	},
 
+	//method that saves "this.active" value to the storage area
 	saveStatus() {
 
 		//value wrapped into a object which will be saved
@@ -106,20 +104,20 @@ const moduleComponentPrototype = {
 			[this.core.head.name]: this.active
 		};
 
-		//set current value to the storage
+		//save current value to storage area
 		browser.storage.local.set(storage).then(
-			function () {
-				//success, 
-				console.log("storage was successfully updated");
+			function (result) {
+				//handle successful save
+				console.log("OK");
 			}, 
-			function () {
-				//failure, 
-				console.log("storage updating failed");
+			function (result) {
+				//handle failed save
+				console.err(result);
 			}
 		);
 	},
 
-	//used by settings page
+	//methods used by settings page:
 	enabled() {
 		this.active = true;
 		this.saveStatus();
@@ -138,14 +136,15 @@ const moduleComponentPrototype = {
 		return this.core.head.desc;
 	},
 
-	isActive() {
+	async isActive() {
+		await this.loadStatus(); //await method that loads "active" value, it ensures that correct value is used below
 		return this.active;
 	}
 }
 
+//module component constructor
 function ModuleComponent(head, body) {
 	this.core = new Component(head, body);
-	//this.loadStatus();
 }
 
 Object.assign(ModuleComponent.prototype, moduleComponentPrototype);

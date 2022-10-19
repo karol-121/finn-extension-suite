@@ -1,5 +1,4 @@
 //main logic for funn extension
-console.log("main loaded");
 
 //saves last url used in callback
 let lastUrl = document.location.href;
@@ -20,7 +19,6 @@ const changeHandler = () => {
     //some components needs to be refreshed upon dynamic content change (change page content without page reloading which finn is using)
   }
 }
-
 
 //register base components
 componentDispatcher.registerBaseComponent(settingsButtonBase);

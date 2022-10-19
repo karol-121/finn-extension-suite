@@ -8,7 +8,6 @@ const settingsButtonBaseHead = {
 
 const settingsButtonBaseBody = {
   main(components) {
-  	console.log("base extension_link.js is loaded");
   	//endpoint in where the link will lead to, this does define where extension config page will be
 		const endpoint = "/funn";
 

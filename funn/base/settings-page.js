@@ -1,8 +1,6 @@
 //base module that appends extension config to finn's webpage
 //this uses an unused endpoint which normally leads to 404 page
 //this modue replaces content on 404 page with extensions settings
-console.log("base extension-config.js is loaded");
-
 const settingsPageBaseHead = {
 	matches: /\/funn/gm
 }
@@ -63,8 +61,13 @@ const settingsPageBaseBody = {
 			setting_group.append(setting_group_title);
 
 			for (component of components) {
-				setting_group.append(this.createSettingGroupItem(component));
-				setting_group.append(this.createSettingGroupSeparator());
+				
+				const item = this.createSettingGroupItem(component);
+
+				item.then(function (created_item) {
+					setting_group.append(created_item);
+					setting_group.append(settingsPageBaseBody.createSettingGroupSeparator()); //here the scope is global, therefore cannot call separator metod by "this"
+				});
 			}
 			
 
@@ -108,7 +111,7 @@ const settingsPageBaseBody = {
 
 
 	//function that creates setting group item
-	createSettingGroupItem(item) {
+	async createSettingGroupItem(item) {
 
 		//title for setting item
 		const title = document.createElement("h4");
@@ -138,7 +141,7 @@ const settingsPageBaseBody = {
 		//moving part of the toggle
 		const toggle_toggler = document.createElement("span");
 
-		let isActive_Local = item.isActive(); //load status from module
+		let isActive_Local = await item.isActive(); //load status from module
 
 		//start with selected or unselected toggle based on passed value
 		if (isActive_Local) {
