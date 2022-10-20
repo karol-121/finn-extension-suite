@@ -6,7 +6,6 @@ const toTopModuleHead = {
   desc: "Legger til en knapp som blar til toppen"
 }
 
-
 const toTopModuleBody = {
   main() {
     const html = document.querySelector("html");
@@ -26,5 +25,5 @@ const toTopModuleBody = {
   }
 }
 
-
+//creating actuall object using content defined here
 const toTopModule = new ModuleComponent(toTopModuleHead, toTopModuleBody);

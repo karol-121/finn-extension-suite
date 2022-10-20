@@ -7,7 +7,7 @@ const settingsPageBaseHead = {
 
 const settingsPageBaseBody = {
   main(components) {
-  	//locales
+  	//locales/text
 		const page_title = "Innstillinger for Funn utvidelse";
 		const page_desc = "Her kan du tilpasse Funn utvidelse til dine preferanser. Du kan blant annet slå på eller av ulike moduler";
 		const setting_group_name = "Funn utvidelse moduler"
@@ -60,11 +60,14 @@ const settingsPageBaseBody = {
 			setting_group.setAttribute("style", "background-color: white;");
 			setting_group.append(setting_group_title);
 
+			//do it for every module component (actuall extensions)
 			for (component of components) {
 				
+				//createSettingGroupItem is an async method, therefore .then is used
 				const item = this.createSettingGroupItem(component);
 
 				item.then(function (created_item) {
+					//append item after async method resolves
 					setting_group.append(created_item);
 					setting_group.append(settingsPageBaseBody.createSettingGroupSeparator()); //here the scope is global, therefore cannot call separator metod by "this"
 				});
@@ -205,6 +208,7 @@ const settingsPageBaseBody = {
 	}
 }
 
+//creating actuall object using content defined here
 const settingsPageBase = new BaseComponent(settingsPageBaseHead, settingsPageBaseBody);
 
 

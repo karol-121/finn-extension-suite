@@ -1,6 +1,4 @@
 //base module that appends extension config link to finn's topbar
-//the endpoint where config page exisit is defined here (atleast for now)
-//however the content of the extension config page is defined in another file
 
 const settingsButtonBaseHead = {
 	matches: /\/.*/gm
@@ -45,7 +43,7 @@ const settingsButtonBaseBody = {
 
 		//creating new link
 		const extension_link = document.createElement("a");
-			extension_link.href = "/funn";
+			extension_link.href = endpoint;
 			extension_link.className = " border-white justify-center p-0 flex-auto md:flex-none relative no-wrap min-width-0 py-0 px-10 ml-10 border-b-2 hover:border-blue-600 focus:border-blue-600 focus:outline-none bg-white flex items-center text-12 text-blue-500 no-underline hover:no-underline focus:no-underline active:no-underline"
 			extension_link.append(icon);
 			extension_link.append(extension_link_span);
@@ -55,4 +53,5 @@ const settingsButtonBaseBody = {
   }
 }
 
+//creating actuall object using content defined here
 const settingsButtonBase = new BaseComponent(settingsButtonBaseHead, settingsButtonBaseBody);

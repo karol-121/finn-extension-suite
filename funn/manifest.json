@@ -14,7 +14,9 @@
 
       "matches": ["*://*.finn.no/*"],
       "js": [
-        "prototypes/components.js",
+        "prototypes/component.js",
+        "prototypes/base-component.js",
+        "prototypes/module-component.js",
         "core/component-dispatcher.js",
         "base/settings-button.js",
         "base/settings-page.js",

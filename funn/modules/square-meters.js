@@ -6,7 +6,6 @@ const squareMetersModuleHead = {
   desc: "Beregner pris per kvadrat meter for alle til leie anonneser. Gode tilbud (verdi under 250kr/m²) er markert med gul skrift."
 }
 
-
 const squareMetersModuleBody = {
   main() {
     //collection of listings
@@ -66,4 +65,5 @@ const squareMetersModuleBody = {
   }
 }
 
+//creating actuall object using content defined here
 const squareMetersModule = new ModuleComponent(squareMetersModuleHead, squareMetersModuleBody);

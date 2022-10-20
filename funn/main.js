@@ -20,6 +20,8 @@ const changeHandler = () => {
   }
 }
 
+//here individual components and componentDispatcher itself are defined in their own files
+
 //register base components
 componentDispatcher.registerBaseComponent(settingsButtonBase);
 componentDispatcher.registerBaseComponent(settingsPageBase);

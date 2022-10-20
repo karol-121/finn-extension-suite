@@ -51,6 +51,7 @@ const mapModuleBody = {
   }
 }
 
+//creating actuall object using content defined here
 const mapModule = new ModuleComponent(mapModuleHead, mapModuleBody);
 
 
