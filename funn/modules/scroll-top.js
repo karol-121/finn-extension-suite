@@ -13,7 +13,7 @@ const toTopModuleBody = {
 
     //create button
     const button = document.createElement("button");
-      button.className = "button position-fixed bottom-8 right-8 zindex-999";
+      button.className = "button button-right-bottom";
       button.append("til toppen");
       button.addEventListener('click', (event) => {
         html.scrollIntoView({behavior: "smooth", block: "start"}); //function that scrolls to the top of the page

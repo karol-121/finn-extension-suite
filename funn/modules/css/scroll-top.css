@@ -1,8 +1,9 @@
 /*extra css rules that are lacking*/
-.position-fixed {
-	position: fixed;
-}
 
-.zindex-999 {
+/*rule used by "scroll to top button"*/
+.button-right-bottom {
+	position: fixed;
 	z-index: 999;
-} 
+	bottom: 8px;
+	right: 8px;
+}
