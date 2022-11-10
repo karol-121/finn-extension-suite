@@ -6,8 +6,9 @@ This extension is currently under development which means that it may not work a
 Currently only for Firefox, support for other browsers may or may not come.
 
 ## Installation
-The extension is currently below version 1.0 which means it will not be published yet. It does lack basic functionality and I don't feel like it is ready for publishing. This means that the extension is not signed and therefore unavailable to install in the ordinary way.
-In mean time you can still use it or try it by installing it as local debug install. **Note that you will have to install it every time you open the browser**
+Extension is published on Firefox Browser Add-ons service (addons.mozilla.org) where it can be installed from. Link to this extension on Firefox Browser Add-ons: https://addons.mozilla.org/en/firefox/addon/funn/
+
+In addition you also install it as local debug install. **Note that you will have to install it every time you open the browser**
 - [Installing extension locally](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#installing)
 
 **Note also** that you can either install the master extension (Funn) which includes all of the modules (except [thumbnail slideshow](#4-finnno---thumbnail-slideshow-proof-of-concept) or each module individually. Manifest file (used for local install) for Funn extension is located in the `/funn/` directory. Manifest file for individual modules are located under `/standalone/{module-name}/` directory. 
