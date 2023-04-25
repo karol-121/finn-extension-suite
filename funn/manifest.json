@@ -1,30 +1,27 @@
 {
-  "manifest_version": 2,
   "name": "Funn",
-  "version": "1.0",
   "description": "Extension for Finn.no",
+  "manifest_version": 2,
+  "version": "1.0",
+
+  "permissions": ["storage"],
+
+  "background": {
+    "scripts": ["background/core.js"]
+  },
+
   "icons": {
     "48": "icons/icon-48.png"
   },
 
-  "permissions": ["storage"],
-
   "content_scripts": [
     {
-
       "matches": ["*://*.finn.no/*"],
       "js": [
-        "prototypes/component.js",
-        "prototypes/base-component.js",
-        "prototypes/module-component.js",
-        "core/component-dispatcher.js",
+        "base/settings-modal.js",
         "base/settings-button.js",
-        "base/settings-page.js",
-        "modules/scroll-top.js",
-        "modules/map-viewer.js",
-        "modules/square-meters.js",
-        "main.js"],
-      "css": ["modules/css/scroll-top.css"]
+        "foreground/main.js"
+      ]
     }
   ]
 }
