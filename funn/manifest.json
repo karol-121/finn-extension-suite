@@ -2,7 +2,7 @@
   "name": "Funn",
   "description": "Extension for Finn.no",
   "manifest_version": 2,
-  "version": "1.0",
+  "version": "2.0",
 
   "permissions": ["storage"],
 
@@ -20,7 +20,14 @@
       "js": [
         "base/settings-modal.js",
         "base/settings-button.js",
+        "modules/scroll-top.js",
+        "modules/square-meters.js",
+        "foreground/component-dispatcher.js",
         "foreground/main.js"
+      ],
+
+      "css": [
+        "modules/css/scroll-top.css"
       ]
     }
   ]

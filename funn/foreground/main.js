@@ -21,3 +21,17 @@ settings_modal.onSave = settings_modalOnSave;
 settings_button.onClick = settings_buttonOnClick;
 settings_button.create(); 
 
+
+//register components
+componentDispatcher.registerComponent(scroll_top);
+componentDispatcher.registerComponent(square_meters);
+
+//dispath modules
+componentDispatcher.dispatch();
+
+
+
+
+
+
+

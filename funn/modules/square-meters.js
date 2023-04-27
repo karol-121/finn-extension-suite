@@ -1,13 +1,12 @@
 //object for "square meter" extension component
-const squareMetersModuleHead = {
-  matches: /\/realestate\/lettings\/search\.html.*/gm,
-  greedy: true,
+const square_meters = {
   name: "Kvadrat meter",
-  desc: "Beregner pris per kvadrat meter for alle til leie anonneser. Gode tilbud (verdi under 250kr/m²) er markert med gul skrift."
-}
+  desc: "Beregner pris per kvadrat meter for alle til leie anonneser. Gode tilbud (verdi under 250kr/m²) er markert med gul skrift.",
+  matches: /\/realestate\/lettings\/search\.html.*/gm, 
+  greedy: true,
 
-const squareMetersModuleBody = {
-  main() {
+  apply() {
+    console.log("square-meters deployed");
     //collection of listings
     let listings;
 
@@ -64,6 +63,3 @@ const squareMetersModuleBody = {
     return Math.floor(kr/m2);
   }
 }
-
-//creating actuall object using content defined here
-const squareMetersModule = new ModuleComponent(squareMetersModuleHead, squareMetersModuleBody);

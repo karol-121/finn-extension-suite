@@ -1,13 +1,11 @@
-//object for "to the top button" extension component
-const toTopModuleHead = {
+const scroll_top = {
+  name: "Til toppen",
+  desc: "Legger til en knapp som blar til toppen",
   matches: /\/.*/gm,
   greedy: false,
-  name: "Til toppen",
-  desc: "Legger til en knapp som blar til toppen"
-}
 
-const toTopModuleBody = {
-  main() {
+  apply() {
+    console.log("scroll_top deployed");
     const html = document.querySelector("html");
     const body = document.querySelector("body");
 
@@ -24,6 +22,3 @@ const toTopModuleBody = {
 
   }
 }
-
-//creating actuall object using content defined here
-const toTopModule = new ModuleComponent(toTopModuleHead, toTopModuleBody);

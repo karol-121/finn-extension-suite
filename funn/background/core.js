@@ -2,6 +2,8 @@ console.log("background/core.js");
 
 
 
+
+
 //save data to storage
 
 
