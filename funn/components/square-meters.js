@@ -5,13 +5,35 @@ const square_meters = {
   matches: /\/realestate\/lettings\/search\.html.*/gm, 
   greedy: true,
 
+  prefs: {
+    active: true,
+    threshold: 250
+  },
+
+  savePrefs() {
+    console.log("saving prefs for :" + this.name);
+    //storage.setPrefs = this.prefs
+  },
+
+  loadPrefs() {
+    console.log("loading prefs for :" + this.name);
+    //this.prefs = storage.getPrefs
+  },
+
+  //entry point
+  run() {
+    this.loadPrefs(); //load prefs from storage
+
+    if (this.prefs.active) {
+      this.apply(); //run module if set to active
+    }
+
+  },
+
   apply() {
     console.log("square-meters deployed");
     //collection of listings
     let listings;
-
-    //threshold below which listing is marked as "good deal"
-    const threshold = 250;
 
     //update listing with current feed
     listings = document.querySelectorAll("article");
@@ -19,7 +41,7 @@ const square_meters = {
     //iterate through all listings and add ratio value for each
     //here the first listing is skipped as it is updated and not replaced, thus modifications are not reset and adds up
     for (listing of listings) {
-      this.modifyListing(listing, threshold);
+      this.modifyListing(listing, this.threshold);
     }
   },
 

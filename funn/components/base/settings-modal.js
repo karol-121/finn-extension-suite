@@ -1,27 +1,26 @@
 //base module that appends extension config to finn's webpage
 const settings_modal = {
-	//user preferences
-	user_prefs: "foo",
-
-	//register callback that should be called upon save action
-	set onSave(callback) {
-		this.onsave_callback = callback;
-	},
+	components: null,
 
 	//function that collect data and sends it to callback function
-	onSaveCollect(event) {
-		this.onsave_callback(event, this.userPrefs);
+	onSave(event) {
+		for (component of this.components) {
+			component.savePrefs();
+		}
 	},
 
-	set userPrefs(prefs) {
-		this.user_prefs = prefs;
-	},
-
-	get userPrefs() {
-		return this.user_prefs;
+	onLoad() {
+		for (component of this.components) {
+			component.loadPrefs();
+		}
 	},
 
 	show() {
+		this.onLoad();
+		this.render();
+	},
+
+	render() {
 		//page body
 		const body = document.querySelector("body");
 
@@ -77,7 +76,8 @@ const settings_modal = {
 			save_button.parentObject = this; //save reference to this object
 			save_button.addEventListener("click", function (e) {
 				//here we are in the scope of the button and therefore we can make user of reference to object we passed earlier
-				this.parentObject.onSaveCollect(e);
+				this.parentObject.onSave(e);
+				modal_backdrop.remove(); //close modal
 			});
 			save_button.append("Lagre");
 			modal_footer.append(save_button);
@@ -89,6 +89,16 @@ const settings_modal = {
 		const subtitle = document.createElement("h4");
 			subtitle.append("Her kan du tilpasse Funn utvidelse til dine preferanser. Du kan blant annet slå på eller av ulike moduler");
 			modal_content.append(subtitle);
+
+		const list = document.createElement("ul");
+			for (component of this.components) {
+				const item = document.createElement("li");
+					item.append(component.name);
+					item.append(component.desc);
+					item.append(component.prefs.active);
+				list.append(item);
+			}
+			modal_content.append(list);
 	}
 }
 

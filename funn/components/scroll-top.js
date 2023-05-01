@@ -4,6 +4,30 @@ const scroll_top = {
   matches: /\/.*/gm,
   greedy: false,
 
+  prefs: {
+    active: true
+  },
+
+  savePrefs() {
+    console.log("saving prefs for :" + this.name);
+    //storage.setPrefs = this.prefs
+  },
+
+  loadPrefs() {
+    console.log("loading prefs for :" + this.name);
+    //this.prefs = storage.getPrefs
+  },
+
+  //entry point
+  run() {
+    this.loadPrefs(); //load prefs from storage
+
+    if (this.prefs.active) {
+      this.apply(); //run module if set to active
+    }
+
+  },
+
   apply() {
     console.log("scroll_top deployed");
     const html = document.querySelector("html");

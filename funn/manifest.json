@@ -18,16 +18,16 @@
     {
       "matches": ["*://*.finn.no/*"],
       "js": [
-        "base/settings-modal.js",
-        "base/settings-button.js",
-        "modules/scroll-top.js",
-        "modules/square-meters.js",
+        "components/base/settings-modal.js",
+        "components/base/settings-button.js",
+        "components/scroll-top.js",
+        "components/square-meters.js",
         "foreground/component-dispatcher.js",
         "foreground/main.js"
       ],
 
       "css": [
-        "modules/css/scroll-top.css"
+        "components/css/scroll-top.css"
       ]
     }
   ]

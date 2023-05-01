@@ -25,7 +25,7 @@ const componentDispatcher = {
 		console.log("dispatch:");
 		for (component of this.components) {
 			if (this.url.match(component.matches) && !component.greedy) {
-				component.apply();
+				component.run();
 			}
 		}
 
@@ -39,7 +39,7 @@ const componentDispatcher = {
 		console.log("dispatch Greedy:");
 		for (component of this.components) {
 			if (this.url.match(component.matches) && component.greedy) {
-				component.apply();
+				component.run();
 			}
 		}
 	}
