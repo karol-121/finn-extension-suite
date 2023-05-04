@@ -18,6 +18,7 @@
     {
       "matches": ["*://*.finn.no/*"],
       "js": [
+        "foreground/storage.js",
         "components/base/settings-modal.js",
         "components/base/settings-button.js",
         "components/scroll-top.js",

@@ -11,13 +11,15 @@ const square_meters = {
   },
 
   savePrefs() {
-    console.log("saving prefs for :" + this.name);
-    //storage.setPrefs = this.prefs
+    storage.set(this.name, this.prefs);
   },
 
   loadPrefs() {
-    console.log("loading prefs for :" + this.name);
-    //this.prefs = storage.getPrefs
+    let tempPrefs = storage.get(this.name);
+
+    if (tempPrefs) {
+      this.prefs = tempPrefs;
+    }
   },
 
   //entry point
@@ -27,7 +29,6 @@ const square_meters = {
     if (this.prefs.active) {
       this.apply(); //run module if set to active
     }
-
   },
 
   apply() {

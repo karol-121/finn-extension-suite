@@ -8,10 +8,12 @@ const componentDispatcher = {
 		this.components.push(component);
 	},
 
+	//parameters for event listener which decides when components dispatches
 	url: document.location.href,
 	pageContent: document.querySelector("body"),
 	mutatorConfig: {childList: true, subtree: true},
 
+	//check if url has changed upon page conted change
 	onChange() {
 		const newUrl = document.location.href;
 		if (newUrl !== this.url) {
@@ -20,9 +22,8 @@ const componentDispatcher = {
 		}
 	},
 
-	//method which iterate registered components and chose which one to run based on their properties
+	//dispatching registered components
 	dispatch() {
-		console.log("dispatch:");
 		for (component of this.components) {
 			if (this.url.match(component.matches) && !component.greedy) {
 				component.run();
@@ -35,8 +36,9 @@ const componentDispatcher = {
 		observer.observe(this.pageContent, this.mutatorConfig);
 	},
 
+	//dispatching registered components in "greedy" mode
+	//greedy means that components will run upon every url change
 	dispatchGreedy() {
-		console.log("dispatch Greedy:");
 		for (component of this.components) {
 			if (this.url.match(component.matches) && component.greedy) {
 				component.run();
