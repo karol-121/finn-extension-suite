@@ -86,19 +86,86 @@ const settings_modal = {
 			title.append("Innstillinger for Funn utvidelse");
 			modal_content.append(title);
 
-		const subtitle = document.createElement("h4");
+		const subtitle = document.createElement("p");
 			subtitle.append("Her kan du tilpasse Funn utvidelse til dine preferanser. Du kan blant annet slå på eller av ulike moduler");
 			modal_content.append(subtitle);
 
-		const list = document.createElement("ul");
+		const component_list = document.createElement("div");
+			
 			for (component of this.components) {
-				const item = document.createElement("li");
-					item.append(component.name);
-					item.append(component.desc);
-					item.append(component.prefs.active);
-				list.append(item);
+
+				const component_title = document.createElement("h3");
+					component_title.className = "text-16";
+					component_title.append(component.name);
+
+				const component_desc = document.createElement("p");
+					component_desc.className = "text-14 pr-16";
+					component_desc.style.flexGrow = 1;
+					component_desc.append(component.desc);
+
+
+				//toggle track element
+				const toggle_tr = document.createElement("span");
+					toggle_tr.selectedClass = "absolute h-full w-full rounded-full transition-colors top-0 left-0 bg-blue-600 f-track-selected";
+					toggle_tr.unselectedClass = "absolute h-full w-full rounded-full transition-colors top-0 left-0 bg-gray-300 f-track-unselected";
+
+				//toggle switch element
+				const toggle_sw = document.createElement("span");
+					toggle_sw.selectedClass = "absolute transition-gpu h-16 w-16 top-4 left-4 rounded-full transition-transform bg-white shadow f-switch-selected";
+					toggle_sw.unselectedClass = "absolute transition-gpu h-16 w-16 top-4 left-4 rounded-full transition-transform bg-white shadow";
+
+				const component_toggle_btn = document.createElement("button");
+					component_toggle_btn.className = "block relative h-24 w-44 cursor-pointer f-switch focus:outline-none focus:ring ring-offset-1 ring-blue-200 rounded-full";
+					
+					component_toggle_btn.toggle_tr = toggle_tr;
+					component_toggle_btn.append(toggle_tr);
+
+					component_toggle_btn.toggle_sw = toggle_sw;
+					component_toggle_btn.append(toggle_sw);
+
+					//set prefs parameter to be controlled by this toggle/button
+					component_toggle_btn.component = component;
+
+					component_toggle_btn.toggle = function (state) {
+						if (state) {
+							this.toggle_tr.className = this.toggle_tr.selectedClass;
+							this.toggle_sw.className = this.toggle_sw.selectedClass;
+						} else {
+							this.toggle_tr.className = this.toggle_tr.unselectedClass;
+							this.toggle_sw.className = this.toggle_sw.unselectedClass;
+						}
+					}
+
+
+					component_toggle_btn.addEventListener("click", function (e) {
+						this.component.prefs.active = !component.prefs.active;
+
+						this.toggle(this.component.prefs.active);
+						console.log(this.component.prefs.active);
+					
+					});
+
+
+				const component_toggle = document.createElement("div");
+					component_toggle.append(component_toggle_btn);
+
+
+
+				const component_details = document.createElement("div");
+					component_details.style.display = "flex";
+					component_details.append(component_desc);
+					component_details.append(component_toggle);
+
+
+				const component_item = document.createElement("div");
+					component_item.className = "group block relative break-words last-child:mb-0 p-16 rounded-8 -mx-16 sm:mx-0 rounded-l-0 rounded-r-0 sm:rounded-8 mt-16 mb-16";
+					component_item.append(component_title);
+					component_item.append(component_details);
+
+					
+				component_list.append(component_item);
 			}
-			modal_content.append(list);
+			modal_content.append(component_list);
 	}
 }
 

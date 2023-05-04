@@ -1,14 +1,12 @@
 //foreground storage plug that handles communication with background
 const storage = {
 
-	onError(message) {
-		console.err(message);
-		return false;
-	},
-
 	//method that saves prefs to storage, key is used to identify prefs
 	set(key, prefs) {
-		browser.runtime.sendMessage({
+		console.log("storage - setting to storage:");
+		console.log(prefs);
+		
+		return browser.runtime.sendMessage({
 
 			//params to send to the storage
 			action: "set", 
@@ -17,14 +15,21 @@ const storage = {
 
 		}).then((response) => {
 
-			return response;
+			console.log("storage - set to storage:");
+			console.log(response);
+			return response; 
 	    
-	  }).catch(this.onError);
+	  }).catch(() => {
+	  	return false;
+	  });
 	},
 
 	//method that retrievies prefs from storage by specified key
 	get(key) {
-		browser.runtime.sendMessage({
+		console.log("storage - getting from storage using: ");
+		console.log(key);
+
+		return browser.runtime.sendMessage({
 
 			//params to send to the storage
 			action: "get", 
@@ -32,10 +37,12 @@ const storage = {
 
 		}).then((response) => {
 
-			return response; 
+			console.log("storage - got from storage:");
+			console.log(response);
+			return response;
 	    
-	  }).catch(this.onError);
+	  }).catch(() => {
+	  	return false;
+	  });
 	}
-
-
 }

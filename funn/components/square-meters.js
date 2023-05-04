@@ -10,25 +10,35 @@ const square_meters = {
     threshold: 250
   },
 
-  savePrefs() {
-    storage.set(this.name, this.prefs);
+  //await here may be unnecessary, remove if so
+  async savePrefs() {
+    await storage.set(this.name, this.prefs);
   },
 
-  loadPrefs() {
-    let tempPrefs = storage.get(this.name);
+  //load user preferences from storage
+  async loadPrefs() {
 
-    if (tempPrefs) {
-      this.prefs = tempPrefs;
+    //request data from storage using foreground storage object
+    const prefsObj = await storage.get(this.name)
+    
+    //if prefs obj has been obtained from storage, use it
+    if (prefsObj) {
+      this.prefs = prefsObj;
     }
+    
   },
 
   //entry point
-  run() {
-    this.loadPrefs(); //load prefs from storage
+  async run() {
+    
+    await this.loadPrefs(); //wait until loading of user preferences is resolved
 
+    //at this point user preferences should be resolved
+    //check therefore is component should run based on user preferences
     if (this.prefs.active) {
-      this.apply(); //run module if set to active
+      this.apply();
     }
+
   },
 
   apply() {
