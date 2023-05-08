@@ -114,6 +114,7 @@ const settings_modal = {
 					toggle_sw.selectedClass = "absolute transition-gpu h-16 w-16 top-4 left-4 rounded-full transition-transform bg-white shadow f-switch-selected";
 					toggle_sw.unselectedClass = "absolute transition-gpu h-16 w-16 top-4 left-4 rounded-full transition-transform bg-white shadow";
 
+				//toggle button
 				const component_toggle_btn = document.createElement("button");
 					component_toggle_btn.className = "block relative h-24 w-44 cursor-pointer f-switch focus:outline-none focus:ring ring-offset-1 ring-blue-200 rounded-full";
 					
@@ -123,9 +124,7 @@ const settings_modal = {
 					component_toggle_btn.toggle_sw = toggle_sw;
 					component_toggle_btn.append(toggle_sw);
 
-					//set prefs parameter to be controlled by this toggle/button
-					component_toggle_btn.component = component;
-
+					//function that changes toggle switch and toggle track appearance accordingly 
 					component_toggle_btn.toggle = function (state) {
 						if (state) {
 							this.toggle_tr.className = this.toggle_tr.selectedClass;
@@ -136,35 +135,34 @@ const settings_modal = {
 						}
 					}
 
+					//set component element to be controlled by this toggle/button
+					component_toggle_btn.component = component;
+					component_toggle_btn.toggle(component_toggle_btn.component.prefs.active); //call toggle function in order to set the initial state of the toggle
 
+					//when toggle is clicked, change status
 					component_toggle_btn.addEventListener("click", function (e) {
-						this.component.prefs.active = !component.prefs.active;
-
+						//change controlled parameter value
+						this.component.prefs.active = !this.component.prefs.active;
+						//update toggle appearance 
 						this.toggle(this.component.prefs.active);
-						console.log(this.component.prefs.active);
-					
 					});
-
 
 				const component_toggle = document.createElement("div");
 					component_toggle.append(component_toggle_btn);
-
-
 
 				const component_details = document.createElement("div");
 					component_details.style.display = "flex";
 					component_details.append(component_desc);
 					component_details.append(component_toggle);
 
-
 				const component_item = document.createElement("div");
 					component_item.className = "group block relative break-words last-child:mb-0 p-16 rounded-8 -mx-16 sm:mx-0 rounded-l-0 rounded-r-0 sm:rounded-8 mt-16 mb-16";
 					component_item.append(component_title);
 					component_item.append(component_details);
 
-					
 				component_list.append(component_item);
 			}
+
 			modal_content.append(component_list);
 	}
 }
