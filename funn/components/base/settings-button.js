@@ -17,26 +17,23 @@ const settings_button = {
 			extension_link_span.append("Funn");
 
 		//icon for funn extension in svg format
-		//TODO: export svg icon to 25px and maybe redo the innerHTML to actuall nodes
 		const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 			icon.className = "false";
 			icon.setAttribute("width", "25");
 			icon.setAttribute("height", "25");
-			icon.setAttribute("viewBox", "0 0 48 48");
+			icon.setAttribute("viewBox", "0 0 25 25");
 			icon.setAttribute("fill", "none");
 			icon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
 			icon.innerHTML = `
-				<g clip-path="url(#clip0_1_34)">
-				<path d="M1 24C1 11.2975 11.2975 1 24 1H44C45.6569 1 47 2.34315 47 4V44C47 45.6569 45.6569 47 44 47H4C2.34315 47 1 45.6569 1 44V24Z" stroke="#818B9A" stroke-width="2"/>
-				<rect x="22" y="14" width="3" height="19" rx="1.5" fill="#818B9A"/>
-				<rect x="33" y="22" width="3" height="19" rx="1.5" transform="rotate(90 33 22)" fill="#818B9A"/>
+				<g>
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M-9.15527e-05 15C0 5 5 0 15 0H20C23 0 24 1 24 4V20C24 23 23 24 20 24H4C1 24 -9.15527e-05 23 -9.15527e-05 20V15ZM1.49991 15C1.5 5.5 6.5 1.5 15 1.5H20C22 1.5 22.5 2 22.5 4V20C22.5 22 22 22.5 20 22.5H4C2 22.5 1.5 22 1.49991 20V15Z" fill="#818B9A"/>
+					<path d="M11.5002 16L11.5 13L8.50023 13C8.00023 13 7.50001 13 7.50001 12.25C7.50001 11.5 8.00023 11.5 8.50023 11.5H11.5V8.5C11.5002 8 11.5 7.5 12.25 7.5C13 7.5 13.0002 8 13 8.5V11.5H16.0002C16.5002 11.5 16.9998 11.5 17 12.25C17.0002 13 16.5002 13 16.0002 13L13 13L13.0002 16C13.0002 16.5 13.0002 17 12.25 17C11.4998 17 11.5002 16.5 11.5002 16Z" fill="#818B9A"/>
 				</g>
 				<defs>
-				<clipPath id="clip0_1_34">
-				<rect width="48" height="48" fill="white"/>
-				</clipPath>
+					<clipPath>
+						<rect width="25" height="25" fill="white" transform="translate(0.5 0.5)"/>
+					</clipPath>
 				</defs>
-				</svg>
 			`
 
 		//creating new link
