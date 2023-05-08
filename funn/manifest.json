@@ -7,7 +7,7 @@
   "permissions": ["storage"],
 
   "background": {
-    "scripts": ["background/core.js"]
+    "scripts": ["background/storage.js"]
   },
 
   "icons": {
@@ -18,7 +18,7 @@
     {
       "matches": ["*://*.finn.no/*"],
       "js": [
-        "foreground/storage.js",
+        "foreground/storage-agent.js",
         "components/base/settings-modal.js",
         "components/base/settings-button.js",
         "components/scroll-top.js",

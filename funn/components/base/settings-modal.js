@@ -9,14 +9,14 @@ const settings_modal = {
 		}
 	},
 
-	onLoad() {
+	async onLoad() {
 		for (component of this.components) {
-			component.loadPrefs();
+			await component.loadPrefs();
 		}
 	},
 
-	show() {
-		this.onLoad();
+	async show() {
+		await this.onLoad();
 		this.render();
 	},
 
@@ -137,7 +137,7 @@ const settings_modal = {
 
 					//set component element to be controlled by this toggle/button
 					component_toggle_btn.component = component;
-					component_toggle_btn.toggle(component_toggle_btn.component.prefs.active); //call toggle function in order to set the initial state of the toggle
+					component_toggle_btn.toggle(component.prefs.active); //call toggle function in order to set the initial state of the toggle
 
 					//when toggle is clicked, change status
 					component_toggle_btn.addEventListener("click", function (e) {

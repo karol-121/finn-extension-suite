@@ -10,14 +10,14 @@ const scroll_top = {
 
   //await here may be unnecessary, remove if so
   async savePrefs() {
-    await storage.set(this.name, this.prefs);
+    await storageAgent.set(this.name, this.prefs);
   },
 
   //load user preferences from storage
   async loadPrefs() {
 
     //request data from storage using foreground storage object
-    const prefsObj = await storage.get(this.name)
+    const prefsObj = await storageAgent.get(this.name)
     
     //if prefs obj has been obtained from storage, use it
     if (prefsObj) {
