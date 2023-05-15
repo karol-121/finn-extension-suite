@@ -19,6 +19,7 @@
       "matches": ["*://*.finn.no/*"],
       "js": [
         "foreground/storage-agent.js",
+        "prototypes/component.js",
         "components/base/settings-modal.js",
         "components/base/settings-button.js",
         "components/map-viewer.js",

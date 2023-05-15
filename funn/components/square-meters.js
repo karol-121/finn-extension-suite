@@ -1,5 +1,6 @@
 //object for "square meter" extension component
 const square_meters = {
+  __proto__: component_prototype,
   name: "Kvadrat meter",
   desc: "Beregner pris per kvadrat meter for alle til leie anonneser. Gode tilbud (verdi under 250kr/m²) er markert med gul skrift.",
   matches: /\/realestate\/lettings\/search\.html.*/gm, 
@@ -8,37 +9,6 @@ const square_meters = {
   prefs: {
     active: true,
     threshold: 250
-  },
-
-  //await here may be unnecessary, remove if so
-  async savePrefs() {
-    await storageAgent.set(this.name, this.prefs);
-  },
-
-  //load user preferences from storage
-  async loadPrefs() {
-
-    //request data from storage using foreground storage object
-    const prefsObj = await storageAgent.get(this.name)
-    
-    //if prefs obj has been obtained from storage, use it
-    if (prefsObj) {
-      this.prefs = prefsObj;
-    }
-    
-  },
-
-  //entry point
-  async run() {
-    
-    await this.loadPrefs(); //wait until loading of user preferences is resolved
-
-    //at this point user preferences should be resolved
-    //check therefore is component should run based on user preferences
-    if (this.prefs.active) {
-      this.apply();
-    }
-
   },
 
   apply() {

@@ -1,4 +1,5 @@
 const scroll_top = {
+  __proto__: component_prototype,
   name: "Til toppen",
   desc: "Legger til en knapp som blar til toppen",
   matches: /\/.*/gm,
@@ -6,37 +7,6 @@ const scroll_top = {
 
   prefs: {
     active: true
-  },
-
-  //await here may be unnecessary, remove if so
-  async savePrefs() {
-    await storageAgent.set(this.name, this.prefs);
-  },
-
-  //load user preferences from storage
-  async loadPrefs() {
-
-    //request data from storage using foreground storage object
-    const prefsObj = await storageAgent.get(this.name)
-    
-    //if prefs obj has been obtained from storage, use it
-    if (prefsObj) {
-      this.prefs = prefsObj;
-    }
-    
-  },
-
-  //entry point
-  async run() {
-    
-    await this.loadPrefs(); //wait until loading of user preferences is resolved
-
-    //at this point user preferences should be resolved
-    //check therefore is component should run based on user preferences
-    if (this.prefs.active) {
-      this.apply();
-    }
-
   },
 
   apply() {
