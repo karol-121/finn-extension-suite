@@ -8,17 +8,21 @@ const componentDispatcher = {
 		this.components.push(component);
 	},
 
+	getComponents() {
+		return this.components; 
+	},
+
 	//parameters for event listener which decides when components dispatches
 	url: document.location.href,
 	pageContent: document.querySelector("body"),
 	mutatorConfig: {childList: true, subtree: true},
 
-	//check if url has changed upon page conted change
+	//check if url has changed upon page content change
 	onChange() {
 		const newUrl = document.location.href;
 		if (newUrl !== this.url) {
 			this.url = newUrl;
-			this.creator.dispatchGreedy();
+			this.parent.dispatchGreedy();
 		}
 	},
 
@@ -32,7 +36,7 @@ const componentDispatcher = {
 
 		//arm mutator observer that will dispatch modules that should be reloaded upon url change
 		const observer = new MutationObserver(this.onChange);
-		observer.creator = this;
+		observer.parent = this; //save reference to this object in order to make onchange() function accessible
 		observer.observe(this.pageContent, this.mutatorConfig);
 	},
 
