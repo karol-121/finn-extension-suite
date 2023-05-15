@@ -77,7 +77,7 @@ const settings_modal = {
 			save_button.addEventListener("click", function (e) {
 				//here we are in the scope of the button and therefore we can make user of reference to object we passed earlier
 				this.parentObject.onSave(e);
-				modal_backdrop.remove(); //close modal
+				document.location.reload(); //reload page in order to apply changes
 			});
 			save_button.append("Lagre");
 			modal_footer.append(save_button);
