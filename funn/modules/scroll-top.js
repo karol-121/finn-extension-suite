@@ -10,7 +10,6 @@ const scroll_top = {
   },
 
   apply() {
-    console.log("scroll_top deployed");
     const html = document.querySelector("html");
     const body = document.querySelector("body");
 

@@ -36,7 +36,6 @@ const component_prototype = {
   },
 
   apply() { //overwrite this
-    console.log("nothing to run");
   }
 
 }

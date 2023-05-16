@@ -16,7 +16,15 @@ In addition you also install it as local debug install. **Note that you will hav
 I plan only on publishing and developing the master extension (Funn) which means that the standalone modules will probably not be accessible outside of local installation.
 
 ## Usage
-After installing extension, a "Funn" button will appear on top bar across all finn.no websites. Clicking on this button will lead to a settings page where user can activate and deactivate chosen modules. On default all modules are active. The [module section](#modules) describes in detail each module that are included with the extension.
+After installing extension, a "Funn" button will appear on top bar across all finn.no websites. Clicking on this button will open a settings modal where user can activate and deactivate chosen modules. On default all modules are active. The [module section](#modules) describes in detail each module that are included with the extension.
+
+![funn button on GUI](/assets/funn-button.png)
+
+*Funn button on GUI*
+
+![settings modal](/assets/funn-settings.png)
+
+*Settings modal*
 
 ## Modules
 ### 1. Finn.no - external map
@@ -27,13 +35,13 @@ Extension that allows for address lookup on kart.finn.no map service. It creates
 Adds link to Finn map with current listing location
 The map opens in new tab showing results for that particular location.
 
-![link to external map created by extension](/assets/img01-externalMap.png)
+![link to external map created by extension](/assets/funn-externalMap.png)
 
 *Link to kart.finn.no where listing location will be shown on map*
 
-![External map where created by extension link leads to](/assets/img02-externalMap.png)
+![External map where created by extension link leads to](/assets/funn-externalMap-2.png)
 
-*part of the kart.finn.no map where created by extension link leads to*
+*Part of the kart.finn.no map where created by extension link leads to*
 
 
 ### 2. Finn.no - to the top
@@ -41,7 +49,7 @@ Extension that adds "to the top" button across whole webpage. This button allows
 
 Simply a button in the right bottom corner is added. When it is pressed, the page automatically scrolls to the top.
 
-!["to the top" button](/assets/img01-toTheTop.png)
+!["to the top" button](/assets/funn-toTheTop.png)
 
 *"to the top" button that is displayed in right bottom corner*
 
@@ -50,13 +58,9 @@ Extension that add price per square meter to home rent listings. In addition lis
 
 Extension adds price per square meter value next to price and amount of square meters on house rent listings. Value is calculated from given price and square meters count. The calculated value is approximate. In addition listings where price per square meter is below predetermined value are marked.
 
-![price per square meter value displayed in listing tile](/assets/img01-squareMeters.png)
+![price per square meter value displayed in listing tile, values below 250 are marked by gold color](/assets/funn-squareMeters.png)
 
-*Price per square meter value displayed in listing tile*
-
-![listing marked as "good deal" by coloring values](/assets/img02-squareMeters.png)
-
-*listing marked as "good deal" by coloring values to gold*
+*Price per square meter value displayed in listing tile, values below 250 are marked by gold color*
 
 ### 4. Finn.no - thumbnail slideshow (proof of concept)
 Extension that implements image slideshow on listing's thumbnail. This make it possible to see listing's item from other perspectives (as long the author has provided these) directly from the front page. 
@@ -65,9 +69,9 @@ After hovering on given listing for x time, the thumbnail changes periodically s
 
 **Note** that this extension does not work properly so use it with caution. I originally developed it as functional prototype and found that this function is not so great afterwards. Therefore for now it is abandoned by me.
 
-![listing images are shown as slideshow upon mouse hover](/assets/img01-thumbnailSlideshow.gif)
+![listing images are shown as slideshow upon mouse hover](/assets/funn-thumbnailSlideshow.gif)
 
-*listing images are shown as slideshow upon mouse hover*
+*Listing images are shown as slideshow upon mouse hover*
 
 ## Development
 Extension source files with `manifest.json` file are located in `/funn/` directory for funn extension and `/standalone/{module-name}` for individual modules. On how to develop extensions refer to this guide: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension

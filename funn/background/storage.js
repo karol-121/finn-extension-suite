@@ -1,6 +1,3 @@
-console.log("background/core.js");
-
-
 //session storage, data stored here are persistent as long browser is not closed or extension is reloaded
 const prefs_storage_temp = {
 

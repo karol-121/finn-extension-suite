@@ -1,4 +1,3 @@
-console.log("foreground/main.js");
 //this is frontend agent
 
 //callback for onclick event for settings button

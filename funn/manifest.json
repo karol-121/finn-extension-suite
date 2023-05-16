@@ -20,17 +20,17 @@
       "js": [
         "foreground/storage-agent.js",
         "prototypes/component.js",
-        "components/base/settings-modal.js",
-        "components/base/settings-button.js",
-        "components/map-viewer.js",
-        "components/scroll-top.js",
-        "components/square-meters.js",
+        "modules/base/settings-modal.js",
+        "modules/base/settings-button.js",
+        "modules/map-viewer.js",
+        "modules/scroll-top.js",
+        "modules/square-meters.js",
         "foreground/component-dispatcher.js",
         "foreground/main.js"
       ],
 
       "css": [
-        "components/css/scroll-top.css"
+        "modules/css/scroll-top.css"
       ]
     }
   ]

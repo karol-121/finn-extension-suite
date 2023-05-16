@@ -12,7 +12,6 @@ const map_viewer = {
   },
 
   apply() {
-    console.log("map_viewer deployed");
     //array of all images on page, it should contain map tile
     const images = document.querySelectorAll('img');
     let mapTile;
