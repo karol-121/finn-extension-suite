@@ -3,7 +3,7 @@
 /*rule used by "scroll to top button"*/
 .button-right-bottom {
 	position: fixed;
-	z-index: 999;
+	z-index: 19;
 	bottom: 8px;
 	right: 8px;
 }
