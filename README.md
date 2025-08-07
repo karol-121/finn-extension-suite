@@ -1,14 +1,13 @@
 # Funn - browser extension for finn.no
 Funn is a browser extension that provides extra features for finn.no website. The purpose of this extension is to make Finn.no experience better. This extension can be seen as an master extension that includes smaller extensions (called modules) which are described in detail in [module section](#modules). Each module can be turned on and off independently meaning that the user can customize its finn.no experience.
  
-This extension is currently under development which means that it may not work as intended. List of features is also subject of change at this moment.
+**This extension development is currently on hold which means that it may be outdated thus not work as intended. List of features is also subject of change at this moment.**
 
 Currently only for Firefox, support for other browsers may or may not come.
 
 ## Installation
-Extension is published on Firefox Browser Add-ons service (addons.mozilla.org) where it can be installed from. Link to this extension on Firefox Browser Add-ons: https://addons.mozilla.org/en/firefox/addon/funn/
 
-In addition you also install it as local debug install. **Note that you will have to install it every time you open the browser**
+For now you can install it only as local debug install. **Note that you will have to install it every time you open the browser**
 - [Installing extension locally](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#installing)
 
 **Note also** that you can either install the master extension (Funn) which includes all of the modules (except [thumbnail slideshow](#4-finnno---thumbnail-slideshow-proof-of-concept) or each module individually. Manifest file (used for local install) for Funn extension is located in the `/funn/` directory. Manifest file for individual modules are located under `/standalone/{module-name}/` directory. 
